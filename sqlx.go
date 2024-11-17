@@ -27,6 +27,10 @@ func MustNew(driver, source string) *DB {
 	return db
 }
 
+func NewUseDb(db *sql.DB) *DB {
+	return &DB{db}
+}
+
 func (db *DB) QueryRow(ctx context.Context, dest any, query string, args ...any) error {
 	rows, err := db.conn.QueryContext(ctx, query, args...)
 	if err != nil {
